@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>How to bypass medium pay wall! &#8212; Medium Pay Wall By Pass 0.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="how-to-bypass-medium-pay-wall">
+<h1>How to bypass medium pay wall!<a class="headerlink" href="#how-to-bypass-medium-pay-wall" title="Permalink to this headline">¶</a></h1>
+<p>I have attempted to bypass the Medium’s tracking in the daily digest it sends out to readers.
+Medium has a limit of 5 stories per month and to ensure of it it uses cookies to check the number
+of times you have visited their site. Earlier it was possible to read the medium articles by opening
+them in private tabs as private tabs don’t store any site data and cookies. But now medium sends digests
+with links to blogs that contains get parameters identifying the email address to which the digest was sent
+and they require you to Log In before reading the complete story.</p>
+<div class="section" id="the-hack-to-bypass-it">
+<h2>The hack to bypass it<a class="headerlink" href="#the-hack-to-bypass-it" title="Permalink to this headline">¶</a></h2>
+<p>I have used regular expressions to get rid of the tracking part of the urls in digest. Now these links can
+be accessed easily in private tabs and you can enjoy full story. This script reads your medium digest
+e-mail removes the tracking urls and sends you the stories right in your inbox.</p>
+</div>
+<div class="section" id="set-up">
+<h2>Set Up<a class="headerlink" href="#set-up" title="Permalink to this headline">¶</a></h2>
+<p>Download the source code from Github</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">vcode11</span><span class="o">/</span><span class="n">medium</span><span class="o">-</span><span class="n">digest</span><span class="o">-</span><span class="n">reader</span><span class="o">.</span><span class="n">git</span>
+<span class="n">cd</span> <span class="n">medium</span><span class="o">-</span><span class="n">digest</span><span class="o">-</span><span class="n">reader</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>Installing the required packages</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>Set up Gmail API</p>
+<ul>
+<li><p>Go to <a class="reference external" href="https://developers.google.com/gmail/api/quickstart/python/">https://developers.google.com/gmail/api/quickstart/python/</a></p></li>
+<li><p>Click the Enable Gmail API Button</p></li>
+<li><p>Fill out the form that appears</p></li>
+<li><p>After you have filled out the form a link to download credentials.json appears</p></li>
+<li><p>Download this file in the same medium-digest-reader directory</p></li>
+<li><p>This file contains your gmail credentials. Keep it secret.</p></li>
+<li><p>In the interactive shell enter following code</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">ezgmail</span><span class="o">,</span> <span class="nn">os</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;C:\path\to\credentials_json_file&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ezgmail</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p>The ezgmail.init() function will open your browser to a Google sign-in page. Enter your Gmail address and password. The page may warn you “This app isn’t verified,” but this is fine, click Advanced and then Go to Quickstart (unsafe)</p></li>
+<li><p>This will generate a token.json file in the same directory</p></li>
+<li><p>You are all set</p></li>
+</ul>
+</div>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>Run the reader.py script using python3</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="n">read</span><span class="o">-</span><span class="n">mail</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>You can now check you email box for a tracking free copy of the digest blogs.</p>
+</div>
+<div class="section" id="regarding-improvements">
+<h2>Regarding Improvements<a class="headerlink" href="#regarding-improvements" title="Permalink to this headline">¶</a></h2>
+<p>This was a extremely simple pet project of mine. I don’t have a good idea of how to use MIME type to send hybird email like the one medium sends.
+Please feel free to point out bugs and make PR’s to fix and add new improvements.</p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">Medium Pay Wall By Pass</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Vishal Mishra.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
