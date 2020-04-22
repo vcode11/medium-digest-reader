@@ -51,7 +51,7 @@ Usage
 -------
 Run the reader.py script using python3 ::
         
-        python3 reader.py
+        python3 read-mail.py
 
 You can now check you email box for a tracking free copy of the digest blogs.  
 
